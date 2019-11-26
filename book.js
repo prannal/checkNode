@@ -27,6 +27,20 @@ router.get("/",(request, response)=>{
     });
 });
 
+router.get("/",(request, response)=>{
+    var queryText = "select no from book";
+    
+    connection.query(queryText,(err, result)=>{
+        if(err==null)
+            {
+                response.send(JSON.stringify(result));
+            }
+            else{
+                response.send(JSON.stringify(err));
+            }
+    });
+});
+
 router.get("/:No",(request, response)=>{
     var queryText = `select * from book where No = ${request.params.No}`;
     connection.query(queryText,(err, result)=>{
